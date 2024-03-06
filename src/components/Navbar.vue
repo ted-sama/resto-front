@@ -11,12 +11,12 @@
       <div class="hidden sm:flex gap-x-5">
         <router-link
           to="/login"
-          class="text-sm p-3 rounded-2xl bg-primary flex items-center"
+          class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
           ><UserRound class="mr-2" />Connexion</router-link
         >
         <router-link
           to="/register"
-          class="text-sm p-3 rounded-2xl bg-black text-white flex"
+          class="text-sm p-3 rounded-2xl bg-black text-white flex hover:bg-neutral-800 transition duration-200 ease-in-out"
           >Inscription</router-link
         >
       </div>

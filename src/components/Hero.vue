@@ -22,7 +22,7 @@
         <div class="flex md:justify-center mt-4">
           <router-link
             to="/login"
-            class="text-sm p-3 rounded-2xl bg-primary flex items-center"
+            class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
             ><UserRound class="mr-2" />Connexion</router-link
           >
         </div>
