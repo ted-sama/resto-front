@@ -1,6 +1,5 @@
 <template>
   <header class="top-0 z-50 sticky bg-white">
-    <!-- test -->
     <div
       class="mx-auto px-4 sm:px-6 lg:px-8 max-w-[90rem] flex h-20 items-center justify-between"
     >
