@@ -8,6 +8,16 @@ const routes = [
     name: "Landing",
     component: Landing,
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('./views/LoginView.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('./views/RegisterView.vue')
+  },
 ];
 
 export default createRouter({
