@@ -8,17 +8,33 @@
           <img :src="logo" alt="Miamiam" class="h-16" />
         </router-link>
       </div>
-      <div class="hidden sm:flex gap-x-5">
+      <div v-if="!isLoggedIn" class="hidden sm:flex gap-x-5">
         <router-link
           to="/login"
           class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
-          ><UserRound class="mr-2" />Connexion</router-link
         >
+          <UserRound class="mr-2" /> Connexion
+        </router-link>
         <router-link
           to="/register"
           class="text-sm p-3 rounded-2xl bg-black text-white flex hover:bg-neutral-800 transition duration-200 ease-in-out"
-          >Inscription</router-link
         >
+          Inscription
+        </router-link>
+      </div>
+      <div v-else class="hidden sm:flex gap-x-5">
+        <router-link
+          to="/categories"
+          class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
+        >
+          Catégories
+        </router-link>
+        <router-link
+          to="/cart"
+          class="text-sm p-3 rounded-2xl bg-black text-white flex hover:bg-neutral-800 transition duration-200 ease-in-out"
+        >
+          Panier
+        </router-link>
       </div>
     </div>
   </header>
@@ -27,4 +43,11 @@
 <script setup>
 import logo from "../assets/miamiam_logo.png";
 import { UserRound } from "lucide-vue-next";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const isLoggedIn = computed(() => {
+  return localStorage.getItem("token") !== null;
+});
 </script>

@@ -1,90 +1,62 @@
 <template>
-  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Se connecter</h2>
-    </div>
-
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
-
-      <form class="space-y-6" @submit.prevent="login">
-        <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Adresse mail</label>
-          <div class="mt-2">
-            <input v-model="email" id="email" name="email" type="email" autocomplete="email" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  <div class="h-screen bg-gray-200 py-20 p-4 md:p-20 lg:p-32">
+    <div class="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg mx-auto">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Bienvenue !</h2>
+        <p class="text-gray-700 mb-6">Veuillez vous connecter à votre compte.</p>
+        <form @submit.prevent="login">
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="username">Nom d'utilisateur</label>
+            <input v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nom d'utilisateur">
           </div>
-        </div>
-
-        <div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2" for="password">Mot de passe</label>
+            <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Mot de passe">
+          </div>
           <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
-            <div class="text-sm">
-            </div>
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Se connecter</button>
+            <router-link to="/register" class="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800">Première connexion ?</router-link>
           </div>
-          <div class="mt-2">
-            <input v-model="password" id="password" name="password" type="password" autocomplete="current-password" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-          </div>
-        </div>
-
-        <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-        </div>
-      </form>
-      
-      <p class="mt-10 text-center text-sm text-gray-500">
-         Première connexion ?
-        {{ ' ' }}
-        <router-link to="/Register" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> S'inscrire</router-link>
-      </p>
-      
-      <p v-if="errorMessage" class="mt-4 text-center text-red-500">{{ errorMessage }}</p>
+        </form>
+        <p v-if="errorMessage" class="mt-4 text-red-500">Mot de passe ou identifiant incorrect.</p>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import img from "../assets/step_1.jpg";
+const email = ref('');
+const password = ref('');
+const errorMessage = ref('');
+const router = useRouter();
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-      errorMessage: ''
-    };
-  },
-  methods: {
-    async login() {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/login_check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: this.email,
-            password: this.password
-          })
-        });
+const login = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/login_check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: email.value,
+        password: password.value
+      })
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-        if (response.ok) {
-
-          localStorage.setItem('token', data.token);
-
-          this.$router.push('/');
-        } else {
-
-          this.errorMessage = data.message;
-        }
-      } catch (error) {
-
-        console.error('Erreur lors de la connexion :', error);
-        this.errorMessage = 'Une erreur s\'est produite lors de la connexion.';
-      }
+    if (response.ok) {
+      localStorage.setItem('token', data.token);
+      router.push('/');
+    } else {
+      errorMessage.value = 'Mot de passe ou identifiant incorrect.';
     }
+  } catch (error) {
+    console.error('Erreur lors de la connexion :', error);
+    errorMessage.value = 'Une erreur s\'est produite lors de la connexion.';
   }
 };
 </script>
