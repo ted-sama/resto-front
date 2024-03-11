@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen bg-gray-200 py-20 p-4 md:p-20 lg:p-32">
+  <div class="h-screen bg-gray-200 p-2 lg:p-8">   
       <div class="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg mx-auto">
         <div class="p-6">
           <h2 class="text-2xl font-bold text-gray-800 mb-2">Inscription</h2>
@@ -26,8 +26,8 @@
               <input v-model="phoneNumber" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNumber" type="text" placeholder="Numéro de téléphone">
             </div>
             <div class="flex items-center justify-between">
-              <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">S'inscrire</button>
-              <router-link to="/login" class="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800">Déjà un compte ? Se connecter</router-link>
+              <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">S'inscrire</button>
+              <router-link to="/login" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800">Déjà un compte ? Se connecter</router-link>
             </div>
           </form>
           <p v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</p>

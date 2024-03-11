@@ -35,6 +35,11 @@
         >
           Panier
         </router-link>
+        <button @click="logout"
+          class="text-sm p-3 rounded-2xl bg-red-500 text-white flex hover:bg-red-700 transition duration-200 ease-in-out"
+        >
+          Déconnexion
+        </button>
       </div>
     </div>
   </header>
@@ -50,4 +55,11 @@ const router = useRouter();
 const isLoggedIn = computed(() => {
   return localStorage.getItem("token") !== null;
 });
+
+function logout() {
+  // Supprimer le token de l'utilisateur lors de la déconnexion
+  localStorage.removeItem("token");
+  // Rediriger vers la page de connexion
+  router.push("/login");
+}
 </script>
