@@ -13,7 +13,7 @@
           to="/login"
           class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
         >
-          <UserRound class="mr-2" /> Connexion
+          <UserRound />Connexion
         </router-link>
         <router-link
           to="/register"
@@ -22,44 +22,11 @@
           Inscription
         </router-link>
       </div>
-      <div v-else class="hidden sm:flex gap-x-5">
-        <router-link
-          to="/categories"
-          class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
-        >
-          Catégories
-        </router-link>
-        <router-link
-          to="/cart"
-          class="text-sm p-3 rounded-2xl bg-black text-white flex hover:bg-neutral-800 transition duration-200 ease-in-out"
-        >
-          Panier
-        </router-link>
-        <button @click="logout"
-          class="text-sm p-3 rounded-2xl bg-red-500 text-white flex hover:bg-red-700 transition duration-200 ease-in-out"
-        >
-          Déconnexion
-        </button>
-      </div>
+      
     </div>
   </header>
 </template>
 
 <script setup>
 import logo from "../assets/miamiam_logo.png";
-import { UserRound } from "lucide-vue-next";
-import { computed } from "vue";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-const isLoggedIn = computed(() => {
-  return localStorage.getItem("token") !== null;
-});
-
-function logout() {
-  // Supprimer le token de l'utilisateur lors de la déconnexion
-  localStorage.removeItem("token");
-  // Rediriger vers la page de connexion
-  router.push("/login");
-}
 </script>

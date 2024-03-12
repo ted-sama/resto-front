@@ -18,6 +18,11 @@ const routes = [
     name: 'Register',
     component: () => import('./views/RegisterView.vue')
   },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('./views/Homeview.vue')
+  },
 ];
 
 export default createRouter({

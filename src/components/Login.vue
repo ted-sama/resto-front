@@ -50,7 +50,7 @@ const login = async () => {
 
     if (response.ok) {
       localStorage.setItem('token', data.token);
-      router.push('/');
+      router.push('/home');
     } else {
       errorMessage.value = 'Mot de passe ou identifiant incorrect.';
     }

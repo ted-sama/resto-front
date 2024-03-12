@@ -15,7 +15,7 @@
           Mangez comme au restaurant, avec le confort de chez vous
         </h1>
       </div>
-      <div class="flex flex-col justify-center" v-if="!isLoggedIn">
+      <div class="flex flex-col justify-center">
         <p class="text-left md:text-center">
           Connectez-vous pour profiter des nombreux plats de Miamiam !
         </p>
@@ -35,11 +35,6 @@
 <script setup>
 import Container from "./Container.vue";
 import { UserRound } from "lucide-vue-next";
-import { computed } from "vue";
-import { useRouter } from "vue-router";
+import { ref } from "vue";
 
-const router = useRouter();
-const isLoggedIn = computed(() => {
-  return localStorage.getItem("token") !== null;
-});
 </script>
