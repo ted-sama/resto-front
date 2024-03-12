@@ -9,7 +9,7 @@
     "
     class="py-20 h-[42rem] bg-cover bg-center"
   >
-    <div class="ml-10">Nos cuisines </div>
+    <div class="ml-10 text-white overline text-3xl font-Dancing">Nos cuisines </div>
         
     </div>
 </template>
