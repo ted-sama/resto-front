@@ -20,11 +20,11 @@
           Connectez vous pour profiter des nombreux plats de Miamiam !
         </p>
         <div class="flex md:justify-center mt-4">
-          <router-link
-            to="/login"
-            class="text-sm p-3 rounded-2xl bg-primary flex items-center hover:bg-primary-dark transition duration-200 ease-in-out"
-            ><UserRound class="mr-2" />Connexion</router-link
-          >
+          <Button class="p-3" as-child>
+            <router-link to="/login"
+              ><UserRound class="mr-2" />Connexion</router-link
+            >
+          </Button>
         </div>
       </div>
     </Container>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
-import Container from "./Container.vue";
+import Container from "@/components/Container.vue";
+import { Button } from "@/components/ui/button";
 import { UserRound } from "lucide-vue-next";
 </script>
