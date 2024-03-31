@@ -107,6 +107,8 @@ const getCart = () => {
     .then((res) => res.json())
     .then((data) => {
       cart.value = data;
+      cartTotalProducts.value = 0;
+      cartTotalPrice.value = 0;
       for (let i = 0; i < data.length; i++) {
         cartTotalProducts.value += data[i].quantity;
         cartTotalPrice.value += data[i].food.price * data[i].quantity;
