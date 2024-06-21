@@ -12,6 +12,7 @@ const showAdminNavbar = [
   "admin-foods",
   "admin-orders",
   "admin-orders-details",
+  "admin-reviews",
 ];
 const showShopNavbar = [
   "shop",

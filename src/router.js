@@ -18,6 +18,15 @@ const routes = [
     },
   },
   {
+    path: "/register",
+    name: "register",
+    component: () => import("@/views/shop/RegisterView.vue"),
+    meta: {
+      skipIfLoggedIn: true,
+      title: "S'incrire",
+    },
+  },
+  {
     path: "/shop",
     name: "shop",
     component: () => import("@/views/shop/ShopHomeView.vue"),
@@ -143,6 +152,15 @@ const routes = [
       title: "Détails de commande",
     },
   },
+  {
+    path: "/admin/reviews",
+    name: "admin-reviews",
+    component: () => import("@/views/admin/ManageReviewsView.vue"),
+    meta: {
+      requiresAdminAuth: true,
+      title: "Gestion des avis",
+    },
+  }
 ];
 
 const router = createRouter({

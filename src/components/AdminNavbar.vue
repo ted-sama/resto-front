@@ -32,6 +32,9 @@
         <Button variant="ghost" as-child>
           <router-link to="/admin/orders">Commandes</router-link>
         </Button>
+        <Button variant="ghost" as-child>
+          <router-link to="/admin/reviews">Avis</router-link>
+        </Button>
       </div>
     </div>
   </header>
